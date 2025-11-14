@@ -1,9 +1,56 @@
-# Please enter the commit message for your changes. Lines starting
-# with '#' will be ignored, and an empty message aborts the commit.
-#
-# On branch main
-#
-# Initial commit
-#
-# Changes to be committed:
-#	new file:   "\347\264\240\346\225\260\347\224\237\346\210\220\345\231\250.py"
+# 素数生成器（带 GUI）
+
+这是一个用 Python 编写的素数生成与分析工具（带 Tkinter GUI）。
+
+**主要功能**
+- 在指定区间内生成素数（支持一次性埃氏筛与分段筛）
+- 保存素数到文件（JSON 与 NDJSON 两种方式）
+- 单个整数素性判断（小范围试除 + Miller-Rabin）
+- 质因数分解（朴素试除法实现）
+- 素数区间分布可视化（matplotlib 嵌入 Tkinter）
+
+**文件说明**
+- `素数生成器.py`：主脚本，包含算法实现与 GUI（当前可能包含来自不同版本的重复段落）。
+- `primes_db.json`：可选的 JSON 存储文件（小数据集）。
+- `primes_db.ndjson`：按行追加的 NDJSON（每行一个整数），适合大数据量流式写入。
+
+系统/依赖
+- Python 3.8+（建议使用 3.10/3.11）
+- `tkinter`：Windows 的标准 Python 通常自带，如果找不到请安装完整的 Python
+- `matplotlib`：用于绘图（需要安装）
+
+快速安装（Windows PowerShell）
+```powershell
+# 升级 pip 并安装 matplotlib
+python -m pip install --upgrade pip
+python -m pip install matplotlib
+```
+
+运行
+```powershell
+# 在脚本所在目录下运行
+python .\素数生成器.py
+```
+
+使用说明（新手流程示例）
+1. 启动程序后，会弹出包含多个标签页的窗口。
+2. 在“生成与保存”或“素数生成”页填写起始与终止值，点击“开始生成”。
+   - 对小范围（如 <= 1e6）程序会使用一次性埃氏筛并快速完成；对大范围使用分段筛并按块写入 `primes_db.ndjson`。
+3. 在“素数判断”页可输入单个整数判断是否为素数，并显示质因数分解（若非素数）。
+4. 在“分布图”页输入起止范围与区间大小，生成素数分布柱状图。
+5. 在“素数库”页可加载已保存的素数或清空存储文件。
+
+注意与建议
+- 当前脚本包含重复代码段（可能来自多次合并）。建议在首次使用前让脚本清理合并为单一实现以减少维护难度。我可以帮你自动合并并测试。
+- 如果要生成非常大的素数集合，请确保磁盘空间充足并且耐心等待。程序会把结果追加到 `primes_db.ndjson`。
+- 若需要在后台运行或批量生成，建议改写为命令行模式并使用分段写入与子线程／进程来避免 GUI 阻塞。
+
+许可
+- 该仓库当前未附带特定许可证；请在分享或商用前添加合适的许可声明。
+
+---
+如果你希望，我可以：
+- 清理并合并 `素数生成器.py` 中的重复代码，生成一个干净版本；
+- 或把功能拆分成模块（`sieve.py`, `io.py`, `gui.py`），并提供测试用例与 `requirements.txt`。
+
+请选择下一步操作。

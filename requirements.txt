@@ -1,0 +1,2 @@
+matplotlib>=3.0
+# tkinter 通常随 Python 自带（Windows）。如果你的环境缺少 tkinter，请安装完整的 Python 分发版。
